@@ -65,39 +65,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Envío de formulario seguro
+  // 2. Envío de formulario (FormSubmit AJAX)
   const form = document.querySelector('.clean-form');
   const feedback = document.getElementById('form-feedback');
 
   if (form) {
+    const btn = form.querySelector('.btn-submit');
+    const btnLabel = btn ? btn.textContent : '';
+    const showFeedback = (message, isError) => {
+      if (!feedback) return;
+      feedback.textContent = message;
+      feedback.classList.toggle('is-error', Boolean(isError));
+      feedback.classList.remove('none');
+      clearTimeout(showFeedback.timer);
+      showFeedback.timer = setTimeout(() => feedback.classList.add('none'), 6000);
+    };
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = form.querySelector('.btn-submit');
-      if (btn) btn.innerText = 'Enviando...';
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+      }
 
       fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
       })
-        .then((res) => {
-          if (res.ok) {
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success === 'true' || data.success === true) {
             form.reset();
-            if (feedback) feedback.classList.remove('none');
+            autoGrow();
+            showFeedback('✓ Mensaje recibido. Te responderé a la brevedad.', false);
           } else {
-            alert('Puedes escribir directamente por WhatsApp o LinkedIn.');
+            showFeedback(data.message || 'No se pudo enviar. Escríbeme por WhatsApp.', true);
           }
         })
         .catch(() => {
-          alert('Conexión no disponible. Por favor, utiliza el botón de WhatsApp.');
+          showFeedback('Conexión no disponible. Por favor, utiliza el botón de WhatsApp.', true);
         })
         .finally(() => {
-          if (btn) btn.innerText = 'Enviar mensaje ↗';
-          setTimeout(() => {
-            if (feedback) feedback.classList.add('none');
-          }, 4000);
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = btnLabel;
+          }
         });
     });
+  }
+
+  // 2b. El textarea crece con el texto, sin arrastre manual
+  const messageField = document.getElementById('comments');
+  const autoGrow = () => {
+    if (!messageField) return;
+    messageField.style.height = 'auto';
+    messageField.style.height = `${messageField.scrollHeight}px`;
+  };
+  if (messageField) {
+    messageField.addEventListener('input', autoGrow);
+    autoGrow();
   }
 
   // 3. Año dinámico en el footer

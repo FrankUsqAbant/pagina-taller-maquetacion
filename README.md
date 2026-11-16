@@ -33,16 +33,6 @@ Portafolio personal en **HTML, CSS y JavaScript vanilla** — sin frameworks, si
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=githubpages&logoColor=white)
 
-## Ejecutar en local
-
-No requiere instalación ni build. Basta con servir la carpeta:
-
-```bash
-python -m http.server 5500
-```
-
-Luego abre <http://localhost:5500/portafolio-cv/>
-
 ## Agregar un proyecto
 
 Los proyectos viven en un array en `portafolio-cv/script.js`. Basta con añadir un objeto — el carrusel se reconstruye solo:
@@ -62,7 +52,7 @@ Los proyectos viven en un array en `portafolio-cv/script.js`. Basta con añadir 
 ## Contacto
 
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/51975713580)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/frank-abanto-3919841b2/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/frankabanto/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/FrankUsqAbant)
 
 ## Licencia

@@ -936,6 +936,15 @@ button, input, textarea {
   transition: all 0.2s ease;
 }
 
+.form-row textarea {
+  resize: none;
+  min-height: 7rem;
+  max-height: 16rem;
+  line-height: 1.6;
+  font-family: inherit;
+  overflow-y: auto;
+}
+
 .form-row input:focus,
 .form-row textarea:focus {
   background: rgba(255, 255, 255, 0.05);
@@ -964,6 +973,10 @@ button, input, textarea {
   text-align: center;
   font-size: 0.9rem;
   color: #38bdf8;
+}
+
+.form-status-msg.is-error {
+  color: #f87171;
 }
 
 /* ------------------- Footer ------------------- */
