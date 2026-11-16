@@ -3,6 +3,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Cargar la hoja de Google Fonts de forma no bloqueante (media="print" -> "all")
+  const fontStylesheet = document.getElementById('font-stylesheet');
+  if (fontStylesheet) {
+    const activateFonts = () => { fontStylesheet.media = 'all'; };
+    if (fontStylesheet.sheet) activateFonts();
+    else fontStylesheet.addEventListener('load', activateFonts, { once: true });
+  }
+
   // 1. Física interactiva y Spotlight para la Credencial Colgante (ID Badge)
   const badgeAssembly = document.getElementById('badge-assembly');
   const idBadge = document.getElementById('id-badge');
